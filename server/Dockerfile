@@ -10,4 +10,5 @@ RUN npm install
 
 COPY . /srv/app/test-app-server
 
+EXPOSE 8000
 CMD [ "npm", "run", "dev-server" ]
