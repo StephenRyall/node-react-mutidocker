@@ -10,3 +10,17 @@ after_success:
 
  — docker push sjryall/multi-server
  — docker push sjryall/multi-client
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west"
+  app: "docker_node_test"
+  env: "DockerNodeTest"
+  bucket_name: "elasticbeanstalk-eu-west-2-164111142476"
+  bucket_path: "docker_node_test"
+  on:
+    branch: master
+  access_key_id:
+    secure: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"

@@ -12,6 +12,10 @@ const host = process.env.API_HOST;
 const store = path.join(__dirname, '/store.json')
 const publicPath = path.join(__dirname, "public");
 
+if (process.env.NODE_ENV === 'development') {
+    console.log("running as usual");
+}
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -54,17 +58,3 @@ app.get("*", (req, res) => {
 
 
 app.listen(port, () => console.log(`Running on port: ${port}`));
-
-
-
-/**
- *
- *         volumes:
-            - ./server:/srv/app/test-app-server
-            - ./srv/app/test-app-server/node_modules
-
-        volumes:
-            - ./src:/srv/app/test-app-src
-            - ./srv/app/test-app-src/node_modules
- *
- */
