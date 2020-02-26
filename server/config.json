@@ -1,0 +1,12 @@
+{
+    "test": {
+
+    },
+    "development": {
+        "PORT": 8080,
+        "HOST": "0.0.0.0"
+    },
+    "prod": {
+        "PORT": 8080
+    }
+}
