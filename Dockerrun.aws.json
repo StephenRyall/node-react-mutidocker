@@ -1,32 +1,64 @@
 {
   "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
-    {
-      "name": "src",
-      "image": "docker.io/sjryall/multi-client",
-      "hostname": "src",
-      "essential": false,
-      "portMappings": [
-        {
-          "hostPort": 8080,
-          "containerPort": 8080
-        }
-      ],
-      "links": ["server"],
-      "memory": 128
-    },
-    {
-      "name": "server",
-      "image": "docker.io/sjryall/multi-server",
-      "hostname": "server",
-      "essential": false,
-      "portMappings": [
-        {
-          "hostPort": 8000,
-          "containerPort": 8000
-        }
-      ],
-      "memory": 128
-    }
-  ]
+      {
+          "command": [
+              "npm",
+              "run",
+              "dev-server"
+          ],
+          "environment": [
+              {
+                  "name": "API_HOST",
+                  "value": "http://0.0.0.0:8080/"
+              },
+              {
+                  "name": "APP_SERVER_PORT",
+                  "value": "8000"
+              },
+              {
+                  "name": "NODE_ENV",
+                  "value": "production"
+              }
+          ],
+          "memory": 128,
+          "essential": true,
+          "image": "node:12.16.0",
+          "name": "server",
+          "portMappings": [
+              {
+                  "containerPort": 8000,
+                  "hostPort": 8000
+              }
+          ]
+      },
+      {
+          "command": [
+              "npm",
+              "run",
+              "dev-client"
+          ],
+          "environment": [
+              {
+                  "name": "REACT_APP_PORT",
+                  "value": "8080"
+              }
+          ],
+          "memory": 128,
+          "essential": true,
+          "image": "node:12.16.0",
+          "links": [
+              "server"
+          ],
+          "name": "src",
+          "portMappings": [
+              {
+                  "containerPort": 8080,
+                  "hostPort": 8080
+              }
+          ]
+      }
+  ],
+  "family": "",
+  "volumes": []
 }

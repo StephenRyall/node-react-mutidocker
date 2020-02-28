@@ -6,7 +6,7 @@ module.exports = {
     main: path.join(__dirname, '/index.js')
   },
   output: {
-    path: path.resolve(__dirname, '../server', 'public'),
+    path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
     publicPath: '/'
   },
@@ -30,14 +30,14 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, '../server', "public"),
+    contentBase: path.join(__dirname, "public"),
     proxy: {
       "*": {
         target: "http://server:8000"  //service name specified inside the docker-compose file
       }
     },
     historyApiFallback: true,
-    host: '0.0.0.0',
+    // host: '0.0.0.0',
     port: 8080
   }
 };

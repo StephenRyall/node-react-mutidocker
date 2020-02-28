@@ -7,7 +7,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 require('dotenv').config({ path: '../.env' })
 const jsonfile = require('jsonfile')
-const port = process.env.APP_SERVER_PORT;
+const port = process.env.APP_SERVER_PORT || 8000;
 const host = process.env.API_HOST;
 const store = path.join(__dirname, '/store.json')
 const publicPath = path.join(__dirname, "public");
